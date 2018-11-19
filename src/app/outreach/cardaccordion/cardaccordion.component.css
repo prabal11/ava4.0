@@ -1,0 +1,99 @@
+.card-accord-cont {
+	
+}
+
+.card-elem {
+	height: 505px;
+	background: #FFFFFF;
+	border: 1px solid #4EC8F0;
+	box-sizing: border-box;
+	box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	padding: 10px 15px;
+	position: relative;
+	
+	transition: height 0.3s ease-out;
+    -o-transition: height 0.3s ease-out;
+    -moz-transition: height 0.3s ease-out;
+    -webkit-transition: height 0.3s ease-out;
+}
+
+.icon {
+	position: absolute;
+	right: 10px;
+	top: 3px;
+}
+
+.card-accord-content {
+	height: 430px;
+	/* opacity: 0;
+	visibility: hidden; */
+	overflow: hidden;
+	display: none;
+}
+
+.showcontent {
+	display: block;
+	/* opacity: 1;
+	visibility: visible; */
+	transition: all 0.3s 0.3s ease-out;
+    -o-transition: all 0.3s 0.3s ease-out;
+    -moz-transition: all 0.3s 0.3s ease-out;
+    -webkit-transition: all 0.3s 0.3s ease-out;
+	
+}
+
+.card-title-label {
+	font-size: 20px;
+	color: #C6C6C6;
+}
+
+.updatedon {
+	font-size: 9px;
+	color: #646464;
+}
+
+.card-title {
+	text-align: right;
+}
+
+.fixed-content {
+	position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+	cursor: pointer;
+}
+
+.accordclose {
+	height: 70px;
+	
+	transition: height 0.3s ease-out;
+    -o-transition: height 0.3s ease-out;
+    -moz-transition: height 0.3s ease-out;
+    -webkit-transition: height 0.3s ease-out;
+}
+
+.content-textarea {
+	width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    font-size: 12px;
+    font-family: lato;
+    border: none;
+	background: none;
+	resize: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.content-textarea::placeholder {
+	font-style: italic;
+}

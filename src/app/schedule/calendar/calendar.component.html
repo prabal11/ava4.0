@@ -1,0 +1,79 @@
+<div fxLayout="column" class="calender-cont">
+	
+	<div fxLayout="row" fxFlexOffset="0" class="calender-wrapper">
+		<div fxFlex="45px" class="nav-btn-cont">
+			<div class="nav-btn left-btn" (click)="goToPrevSet()">
+				<mat-icon class="calender-nav-icon">keyboard_arrow_left</mat-icon>
+			</div>
+		</div>
+		<div fxFlex="calc(100%-90px)">
+			<div fxLayout="row" fxLayoutGap="10px" style="height: 100%">
+				<div fxFlex="calc(50%-5px)">
+					<div class="calender">
+						
+						<!-- <app-calendar (selectedDate)="getSelectedDate($event)" [selectedMonth]="currentMonth" [updateCalender]="updateCalender" ></app-calendar> -->
+						
+						<div class="calendar-grid">
+							<div class="calendar-header">{{currentMonth | date:'MMMM'}}</div>
+							<div class="month-grid">
+								<!-- <div class="day-names">
+									<div *ngFor="let name of dayNames" class="day-name">
+									{{ name }}
+									</div>
+								</div> -->
+								
+								<div class="weeks">
+									<div *ngFor="let week of weeks let weekIndx = index" class="week">
+										<div *ngFor="let day of week let dayIndx = index" [ngClass]="{'date-text': true, holiday: day.holiday, today: day.today, seldate: day.selected, longerday: day.longerday, shorterday: day.shorterday}" (click)="selectedDateClick(day.weekdate, weekIndx, dayIndx, 'current')">
+										  <div>{{day.weekdate | date:'d'}}</div>
+										  <div class="dots-container" *ngIf="day.weekdate">
+											<div [ngClass]="{reddots: day.reddots}"></div>
+										  </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div fxFlex="calc(50%-5px)">
+					<div class="calender">
+						
+						<div class="calendar-grid">
+							<div class="calendar-header">{{nextMonth | date:'MMMM'}}</div>
+							<div class="month-grid">
+								<!-- <div class="day-names">
+									<div *ngFor="let name of dayNames" class="day-name">
+									{{ name }}
+									</div>
+								</div> -->
+								
+								<div class="weeks">
+									<div *ngFor="let week of weeks_next let weekIndx = index" class="week">
+										<div *ngFor="let day of week let dayIndx = index" [ngClass]="{'date-text': true, holiday: day.holiday, today: day.today, seldate: day.selected, longerday: day.longerday, shorterday: day.shorterday}" (click)="selectedDateClick(day.weekdate, weekIndx, dayIndx, 'next')">
+										  <div>{{day.weekdate | date:'d'}}</div>
+										  <div class="dots-container" *ngIf="day.weekdate">
+											<div [ngClass]="{reddots: day.reddots}"></div>
+										  </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div fxFlex="45px" class="nav-btn-cont right-float">
+			<div class="nav-btn right-btn" (click)="goToNextSet()">
+				<mat-icon class="calender-nav-icon">keyboard_arrow_right</mat-icon>
+			</div>
+		</div>
+		
+	</div>
+	
+</div>

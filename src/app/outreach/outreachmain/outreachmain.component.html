@@ -1,0 +1,33 @@
+<div class="accordion" [style.height.px]="accordHt">
+    <ul>
+         <li [style.marginBottom.px]="-acord_bottom_margin "*ngFor="let item of panelArr let indx=index">
+            <input type="radio" name="select" class="accordion-select" [checked]="item.checked" (change)="activePanel(indx)" [style.height.px]="zoomWd" />
+            <div [ngClass]="{'accordion-title': true, 'title-selected': item.checked === true}" [style.height.px]="zoomWd" [style.fontSize.px]="fontsize">
+                <span>{{item.title}}</span>
+            </div>
+			
+			<div class="accordion-content" [style.height.px]="acord_cont_ht" style="overflow: hidden;" *ngIf="indx == 0">
+                <app-treatment></app-treatment>
+            </div>
+			
+			<div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 1 || indx == 2">
+                Under Construction
+            </div>
+			
+			<!-- <div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 0">
+                <app-analytics (getPanelSelected)="openPanelOption($event)"></app-analytics>
+            </div>
+			
+			<div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 1">
+                <app-settings [blueboxHt]="acord_cont_ht"></app-settings>
+            </div>
+			
+            <div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 2">
+                <app-pms [blueboxHt]="acord_cont_ht"></app-pms>
+            </div> -->
+			
+			
+            <div [ngClass]="{'accordion-separator': itemclicked == true}" [ngStyle]="{'margin-bottom': item.checked === true ? acord_bottom_margin + 'px' : ''}"></div>
+        </li> 
+    </ul>
+</div> 

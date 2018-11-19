@@ -1,0 +1,18 @@
+<div class="drpdn-panel">
+	<div class="drpdn-cont" *ngFor="let drpdn of multidrpdndata let indx=index">
+		<div class="drpdn-title" (click)="toogleDropdown(indx)">{{drpdn.title}}</div>
+		<div class="drpdn-optn" *ngIf="drpdn.opendrpdn">
+			<ul>
+				<li *ngFor="let ddoption of drpdn.ddoptions let subindx=index" class="optn_title">
+					<div (click)="toggleSubdrpndn(indx,subindx)">{{ddoption.title}}
+						<span style="color: #696969;" *ngIf="ddoption.selectedOptn">:</span>
+						<span class="label-value" *ngIf="ddoption.selectedOptn">{{ddoption.selectedOptn}}</span>
+					</div>
+					<ul class="accord-sub" *ngIf="ddoption.opensubdrpdn">
+						<li class="accord-sub-label" *ngFor="let suboption of ddoption.suboptn let optnindx=index" (click)="selectedOptn(indx,subindx,optnindx)"><span>{{suboption.title}}</span></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

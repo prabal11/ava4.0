@@ -1,0 +1,46 @@
+<div class="patient-block" [style.left.px]="posLeft" [style.width.px]="blockWd-1" [style.borderColor]="appntType" (click)="openPatientBlock()">
+	
+	<div *ngIf="duration_min <= 15" class="min-10">
+		<div class="img-cont" *ngIf="timer_view != 9">
+			<div class="profile-img" [style.borderColor]="appntType">
+				<img src={{patientdata.profileimg}} />
+			</div>
+			<div class="dots" *ngIf="patientdata.payment==true || patientdata.alergy==true"></div>
+		</div>
+		
+		<div class="patient-name" *ngIf="timer_view != 9">{{patientdata.firstname}}</div>
+		<div class="access-code" *ngIf="timer_view != 9">{{patientdata.accesscode}}</div>		
+	</div>
+	
+	<div *ngIf="duration_min > 15" class="min-other">
+		<div class="upper-block" *ngIf="timer_view != 9">
+			<div class="profile-img-wrapper">
+				<div class="profile-img" [style.borderColor]="appntType">
+					<img src={{patientdata.profileimg}} />
+				</div>
+			</div>
+			
+			<div class="patient-name">{{patientdata.firstname}} {{patientdata.lastname}}</div>
+			<div class="access-code">{{patientdata.accesscode}}</div>
+			
+			<!--  -->
+			
+		</div>
+		
+		<div class="lower-block" *ngIf="timer_view != 9">
+			<div fxLayout="row" style="height: 100%">
+				<div fxFlex="50" class="time-cont">
+					<div class="notes">
+						<span *ngIf="patientdata.alergy==true">+</span>
+						<span *ngIf="patientdata.payment==true">$$</span>
+					</div>
+				</div>
+				<div fxFlex="50" class="time-cont">
+					<div class="time-in-chair">{{patientdata.stratTime}} am</div>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+	
+</div>

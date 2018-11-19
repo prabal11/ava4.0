@@ -1,0 +1,148 @@
+.patient-block {
+	width: 240px;
+	height: 80px;
+	background: #fff;
+	border: 2px solid #B48CF6;
+	border-radius: 5px;
+	box-sizing: border-box;
+	position: absolute;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+	
+	/*left: 234px;*/
+}
+
+.upper-block {
+	height: 60%;
+	width: 100%;
+	position: relative;
+}
+
+.lower-block {
+	width: 100%;
+	border-top: 1px solid #646464;
+	padding-top: 5px;
+	margin-top: 3px;
+	position: relative;
+}
+
+.profile-img {
+	width: 37px;
+	height: 37px;
+	border: 2px solid #B48CF6;
+	border-radius: 100px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.profile-img-wrapper {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.patient-name {
+	display: inline-block;
+	color: #646464;
+	font-size: 14px;
+	font-weight: bold;
+	vertical-align: middle;
+	margin-left: 10px;
+	width: 50%;
+}
+
+.notes {
+	color: #F11212;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+.notes span {
+	margin-right: 5px;
+}
+
+.patient-block-icon {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	color: #646464;
+}
+
+.time-cont {
+	display: flex;
+	align-items: center;
+}
+
+.time-in-chair {
+	font-size: 11px;
+	text-align: right;
+	width: 100%;
+}
+
+.access-code {
+	font-size: 10px;
+	text-align: right;
+	width: 100%;
+	color: #646464;
+	margin-top: -5px;
+}
+
+.chair-section {
+	position: relative;
+}
+
+/* ---- new css --- */
+
+.min-10 {
+	position: relative;
+}
+
+.min-10 .profile-img {
+	width: 37px;
+	height: 37px;
+	position: relative;
+}
+
+.min-10 .patient-name {
+	display: block;
+	color: #646464;
+	font-size: 13px;
+	font-weight: bold;
+	vertical-align: top;
+	margin-left: 0;
+	width: 100%;
+	text-align: center;
+	padding: 0 2px;
+}
+
+.min-10 .access-code {
+	font-size: 9px;
+	color: #646464;
+	text-align: center;
+	width: 100%;
+	font-weight: normal;
+	margin-top: 0px;
+}
+
+.dots {
+	bottom: -5px;
+    width: 4px;
+    height: 4px;
+    background: #F11212;
+    border-radius: 100%;
+    position: absolute;
+    right: -5px;
+	
+}
+
+.min-10 .img-cont {
+	position: relative;
+	width: 37px;
+	height: 37px;
+	margin: 3px auto 5px;
+}
+
+.min-other {
+	padding: 3px 8px;
+}

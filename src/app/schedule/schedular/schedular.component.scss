@@ -1,0 +1,292 @@
+@import '~@angular/material/theming';
+
+.schedular-cont {
+	padding: 30px 48px 0 0; 
+	box-sizing: border-box;
+	width: 1728px;
+	transform-origin: 0 0;
+}
+
+.day_status {
+	color: #56CCF2;
+	font-size: 24px;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	float: left;
+	cursor: pointer;
+}
+
+.date-selector {
+	position: relative;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #A5A5A5;
+    padding: 13px 5px;
+    max-width: 430px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 7px 0 0;
+}
+
+.date-selector-label {
+	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+	color: #56CCF2;
+	padding-top: 5px
+}
+
+.other-day {
+	font-size: 15px;
+	padding-top: 7px;
+}
+
+.selector-icon {
+	width: 30px;
+	height: 30px;
+	font-size: 30px;
+    color: #63CCF2;
+	cursor: pointer;
+}
+
+.search_panel {
+	position: relative;
+	background: #fff;
+	border-radius: 5px;
+	border: 1px solid #A5A5A5;
+	/*max-width: 400px;
+	width: 100%;*/
+	
+	width: 400px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 36px;
+	float: right
+}
+
+.search-input {
+	padding: 20px 20px 20px 10px;
+	width: 100%;
+	box-sizing: border-box;
+	border: none;
+	font-size: 16px;
+}
+
+.search-input::placeholder {
+	color: #A5A5A5;
+	font-size: 18px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.search-panel-icon {
+	color: #63CCF2;
+	width: 30px;
+	height: 30px;
+	font-size: 30px;
+}
+
+.vh_center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.plus-btn-cont {
+	position: relative;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #A5A5A5;
+    width: 40px;
+    padding: 12px 10px;
+    margin-top: 36px;
+	float: right;
+	margin-left: 20px;
+	text-align: center;
+}
+
+.panelClass.mat-dialog-container {
+	@include mat-elevation(0);
+}
+
+.today-marker {
+	width: 10px;
+	height: 10px;
+	border: 2px solid #fe0000;
+	border-radius: 100px;
+	display: inline-block;
+	vertical-align: middle;
+	box-sizing: border-box;
+	margin-top: -5px;
+	margin-right: 10px;
+}
+
+.location-selection {
+	float: left;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.clear {
+	clear: both;
+}
+
+.scroll-btn {
+	margin-top: 10px;
+    text-align: center;
+    /*padding-left: 53px;*/
+	position: relative;
+	height: 25px;
+	width: 40px;
+	margin-bottom: 10px;
+}
+
+.scroll-btn-img {
+	position: absolute;
+	left: 53px;
+	right: 0;
+	margin: auto;
+}
+
+.calenderyr {
+	margin-left: 7px;
+}
+
+.lastnames-list {
+	width: 364px;
+    height: 277px;
+    background: #FFFFFF;
+    border: 1px solid #A5A5A5;
+    position: absolute;
+    right: 0;
+    top: 58px;
+    z-index: 100;
+	
+	padding: 20px;
+	
+}
+
+.lastitem-label {
+	font-size: 14px;
+	text-align: right;
+	color: #4EC8F0;
+	margin-bottom: 20px;
+	padding-right: 30px;
+}
+
+.legend-cont {
+	position: absolute;
+    right: 165px;
+    bottom: 8px;
+}
+
+.legend-cont ul {
+	list-style: none;
+	
+}
+
+.appnt-type-block {
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	display: inline-flex;
+	font-size: 6px;
+	align-items: center;
+	justify-content: center;
+	margin-left: 17px;
+	color: #4C4C4C;
+	vertical-align: middle;
+}
+
+.appnt-type-block.yellow {
+	background: #FCFF7C;
+}
+
+.appnt-type-block.red {
+	background: #FD7474;
+}
+
+.appnt-type-block.blue {
+	background: #74B3FD;
+}
+
+.appnt-type-block.orange {
+	background: #F6CC61;
+}
+
+.appnt-type-block.green {
+	background: #8CF1E4;
+}
+
+.appnt-type-block.purple {
+	background: #B48CF6;
+}
+
+.zoom-cont {
+	position: absolute;
+	bottom: 8px;
+	right: 20px;
+}
+
+.zoom-btn {
+	background: #fff;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 4px;
+	cursor: pointer;
+}
+
+.plus-btn {
+	border-radius: 100px 0 0 100px;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.minus-btn {
+	border-radius: 0 100px 100px 0;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.zoom-value {
+	display: inline-block;
+    width: 60px;
+	height: 30px;
+	box-sizing: border-box;
+    text-align: center;
+    vertical-align: middle;
+    background: #fff;
+    padding: 5px 0;
+    border: 1px solid #ccc;
+	font-size: 14px;
+}
+
+.zoom-value input {
+	width: 45%;
+    text-align: right;
+    border: none;
+    padding-right: 2px;
+	font-size: 14px;
+}
+
+.zoom-icon {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	margin: auto;
+}
+
+
+

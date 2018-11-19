@@ -1,0 +1,41 @@
+<div class="card-accord-cont">
+	<div [ngClass]="toggleclass[0]">
+		<div class="icon">
+			<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M1.2459 7.23996L0.706284 9.19288L2.65798 8.65319L2.65939 8.6546L8.26595 3.04593L6.85338 1.63282L1.24713 7.24119L1.2459 7.23996Z" fill="#56CCF2"/>
+				<path d="M7.17944 1.30664L8.20188 0.283814C8.35806 0.127574 8.61128 0.127574 8.76746 0.283813L9.61445 1.13112C9.77063 1.28736 9.77063 1.54068 9.61445 1.69692L8.59201 2.71974L7.17944 1.30664Z" fill="#56CCF2"/>
+			</svg>
+		</div>
+		
+		<!-- <div class="card-accord-content" [ngStyle]="{'display': toggleclass[0].accordclose == false ? 'block' : 'none'}"> -->
+		<div [ngClass]="contentClass[0]">
+			<perfect-scrollbar>
+				<app-acordionddn [drpdndata]="txPlanArr"></app-acordionddn>
+			</perfect-scrollbar>
+		</div>
+		
+		<div class="fixed-content" (click)="toggleAccordion(0)">
+			<div class="card-title">
+				<div class="updatedon">updated: 10/18/18</div>
+				<div class="card-title-label">Tx Plan</div>
+			</div>
+			
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+	
+	<div [ngClass]="toggleclass[1]">
+		<!-- <div class="card-accord-content" [ngStyle]="{'display': toggleclass[1].accordclose == false ? 'block' : 'none'}"> -->
+		<div [ngClass]="contentClass[1]">
+			<textarea class="content-textarea" placeholder="Type here..."></textarea>
+		</div>
+		<div class="fixed-content" (click)="toggleAccordion(1)">
+			<div class="card-title">
+				<div class="updatedon">updated: 10/18/18</div>
+				<div class="card-title-label">Goals</div>
+			</div>
+			
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+</div>
