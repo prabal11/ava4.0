@@ -20,6 +20,7 @@ export class PmsComponent implements OnInit {
 	animatebottom: any;
 	animatetop: any;
 	openMenu = false;
+	sectionOpen: any;
 	
 	optionsArr_pms: any[] = [
 		{grp_title: 'OPERATIONS', grp_options: [{optns: 'Human Resources'}, {optns: 'Inventory'}, {optns: 'Marketing'}, {optns: 'Phone System'}, {optns: 'Time Clock'}, {optns: 'Training'}]},
@@ -95,11 +96,34 @@ export class PmsComponent implements OnInit {
 		this.openMenu = true;
 		
 	} else {
-		this.openMenu = false;
-		this.activeOperation = false;
-		this.activeClinic = false;
-		this.activeFinances = false;
+		
+		if(this.sectionOpen != section){
+			
+			if(section == 'operations'){
+				this.activeOperation = true;
+				this.activeClinic = false;
+				this.activeFinances = false;
+			} else if(section == 'clinic'){
+				this.activeOperation = false;
+				this.activeClinic = true;
+				this.activeFinances = false;
+			} else if(section == 'finances'){
+				this.activeOperation = false;
+				this.activeClinic = false;
+				this.activeFinances = true;
+			}
+			this.openMenu = true;
+			
+		} else {
+		
+			this.openMenu = false;
+			this.activeOperation = false;
+			this.activeClinic = false;
+			this.activeFinances = false;
+		}
 	}
+	
+	this.sectionOpen = section;
   }
   
   closeOptions() {

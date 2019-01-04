@@ -1,32 +1,32 @@
 <div class="chair">
 	
-	<div fxLayout="row" fxLayoutGap="12px">
-		<div fxFlex="40px">
+	<div fxLayout="row" fxLayoutGap="10px">
+		<div fxFlex="35px">
 			<div class="chair-num">
 				<div class="chair-label">{{chairDetails.label}}</div>
 			</div>
 		</div>
-		<div fxFlex="calc(100% - 52px)">
+		<div fxFlex="calc(100% - 45px)">
 			<div class="chair-details">
 				<div fxLayout="row">
 					<div fxFlex="60">
 						<div class="patient_name" *ngIf="chairDetails.patient">{{chairDetails.patient}}</div>
 						<div class="seated_at" *ngIf="chairDetails.seated">Seated at {{chairDetails.seated}}</div>
 					</div>
-					<div fxFlex="40" style="position: relative; height: 80px">
+					<div fxFlex="40" style="position: relative; height: 70px">
 						<div class="outer-border" *ngIf="chairDetails.progress"></div>
 						<div class="counter-svg" *ngIf="chairDetails.progress">
-							<svg width="56" height="56" viewBox="0 0 56 56" class="progress__svg">
-							  <circle [attr.r]="radius" cx="28" cy="28" stroke-width="6" class="progress__meter" fill="none" />
-							  <circle [style.strokeDasharray]="circumference" [style.strokeDashoffset]="dashoffset" [attr.r]="radius" cx="28" cy="28" stroke-width="6" fill="none" [ngClass]="progressValue" />
+							<svg width="50" height="50" viewBox="0 0 50 50" class="progress__svg">
+							  <circle [attr.r]="radius" cx="25" cy="25" stroke-width="6" class="progress__meter" fill="none" />
+							  <circle [style.strokeDasharray]="circumference" [style.strokeDashoffset]="dashoffset" [attr.r]="radius" cx="25" cy="25" stroke-width="6" fill="none" [ngClass]="progressValue" />
 							</svg>
 						</div>
 						
 						<div class="filled-circle" *ngIf="chairDetails.progress" (click)="changeCount()" (dblclick)="dblclickEvent()">
 							<div class="filled-circle-blue">
-								<img *ngIf="clickCount == 1" src="assets/Ellipse 3.11.png" />
-								<img *ngIf="clickCount == 2" src="assets/Ellipse 3.19.png" />
-								<img *ngIf="clickCount == 3" src="assets/Ellipse 3.10.png" />
+								<img *ngIf="clickCount == 1" src="assets/Ellipse 3.11.png" width="100%"/>
+								<img *ngIf="clickCount == 2" src="assets/Ellipse 3.19.png" width="100%" />
+								<img *ngIf="clickCount == 3" src="assets/Ellipse 3.10.png" width="100%" />
 							</div>
 							
 							<!-- <svg *ngIf="clickCount == 1" class="filled-circle-blue" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">

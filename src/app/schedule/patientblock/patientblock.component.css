@@ -1,6 +1,6 @@
 .patient-block {
 	width: 240px;
-	height: 80px;
+	height: 70px;
 	background: #fff;
 	border: 2px solid #B48CF6;
 	border-radius: 5px;
@@ -12,16 +12,14 @@
 }
 
 .upper-block {
-	height: 60%;
 	width: 100%;
 	position: relative;
 }
 
 .lower-block {
 	width: 100%;
-	border-top: 1px solid #646464;
-	padding-top: 5px;
-	margin-top: 3px;
+	/* border-top: 1px solid #646464; */
+	padding-top: 3px;
 	position: relative;
 }
 
@@ -47,9 +45,12 @@
 	color: #646464;
 	font-size: 14px;
 	font-weight: bold;
-	vertical-align: middle;
+	vertical-align: top;
 	margin-left: 10px;
-	width: 50%;
+	width: calc(100% - 52px);
+	margin-top: 2px;
+	border-bottom: 1px solid #646464;
+	padding-bottom: 5px;
 }
 
 .notes {
@@ -85,7 +86,11 @@
 	text-align: right;
 	width: 100%;
 	color: #646464;
-	margin-top: -5px;
+	/* margin-top: -12px; */
+	
+	position: absolute;
+	right: 0;
+	bottom: 3px;
 }
 
 .chair-section {
@@ -114,15 +119,19 @@
 	width: 100%;
 	text-align: center;
 	padding: 0 2px;
+	border-bottom: none;
 }
 
 .min-10 .access-code {
 	font-size: 9px;
-	color: #646464;
-	text-align: center;
-	width: 100%;
-	font-weight: normal;
-	margin-top: 0px;
+    color: #646464;
+    text-align: center;
+    width: 100%;
+    font-weight: normal;
+    bottom: -8px;
+    padding-left: 5px;
+    box-sizing: border-box;
+	
 }
 
 .dots {
@@ -140,7 +149,7 @@
 	position: relative;
 	width: 37px;
 	height: 37px;
-	margin: 3px auto 5px;
+	margin: 2px auto 2px;
 }
 
 .min-other {

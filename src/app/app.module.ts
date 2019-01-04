@@ -10,8 +10,7 @@ import { AccordionModule } from './accordion/accordion.module';*/
 
 @NgModule({
   declarations: [
-    AppComponent
-	
+    AppComponent	
   ],
   imports: [
     BrowserModule,

@@ -32,15 +32,14 @@
 
 .accordion-title,
 .accordion-select  {
-    background-color: #fff;
+    background-color: #333333;
 	/* border: 1px solid #A5A5A5; */
-    color: #A5A5A5;
+    color: #FFFFFF;
     width: 46px;
     height: 968px;
     font-size: 15px;
 	font-weight: bold;
 	text-align: center;
-	color: #646464;
 	border-width: thin;
 	border-style: solid;
 	border-color: #A5A5A5;
@@ -64,7 +63,7 @@
 .title-selected {
 	background-color: #f0f0f0;
 	border: 1px solid rgba(0,0,0,0);
-	color: #4EC8F0;
+	color: #333333;
 	
 	transition: background-color 0.5s linear;
     -o-transition: background-color 0.5s linear;
@@ -87,10 +86,10 @@
     margin-left: 20px;
 }
 
-.accordion-select:hover ~ .accordion-title,
+/*.accordion-select:hover ~ .accordion-title,
 .accordion-select:checked ~ .accordion-title {
     background-color: #f0f0f0;
-}
+}*/
 
 .accordion-title span  {	
     transform: rotate(-90deg);

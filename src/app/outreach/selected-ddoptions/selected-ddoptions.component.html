@@ -1,0 +1,11 @@
+<div class="drpdn-panel">
+	<div class="drpdn-cont" *ngFor="let drpdn of drpdndata let indx=index">
+		<div class="drpdn-title" (click)="toogleDropdown(indx)">{{drpdn.title}}</div>
+		<div class="drpdn-optn" *ngIf="drpdn.opendrpdn_edit">
+			<ul>
+				<li *ngFor="let ddoption of drpdn.ddoptions" class="optn_title"><span>{{ddoption.title}}:</span><span class="selectedoptn">{{ddoption.selectedOptn}}</span></li>
+				
+			</ul>
+		</div>
+	</div>
+</div>

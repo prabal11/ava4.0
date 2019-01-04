@@ -6,23 +6,24 @@
 			
 			<div [ngClass]="{'accordion-title': true, 'title-selected': item.checked === true}" [style.height.px]="accordHt-2" [style.width.px]="zoomWd" [style.fontSize.px]="fontsize"><span>{{item.title}}</span></div>
             
-			<div class="accordion-content" [style.height.px]="accord_content_Ht" [style.width.px]="acord_cont_wd" *ngIf="item.id == '0'" [@fadeAnimation]="getRouterOutletState(outlet)">
-               <router-outlet name='adminoutlet' #outlet="outlet"></router-outlet>
+			<div class="accordion-content" [style.height.px]="accord_content_Ht" [style.width.px]="acord_cont_wd" *ngIf="item.id == '0'" [@fadeAnimation]="getRouterOutletState(adminoutlet)">
+				
+               <router-outlet name='adminoutlet' #adminoutlet="outlet"></router-outlet>
 			   <mat-spinner class="loader" [mode]="'indeterminate'" diameter="50" *ngIf="loadingRouteConfig"></mat-spinner>
             </div>
 			
-			<div class="accordion-content" [style.height.px]="accord_content_Ht" [style.width.px]="acord_cont_wd" *ngIf="item.id == '1'" [@fadeAnimation]="getRouterOutletState(outlet)">
-                <router-outlet name='scheduleoutlet' #outlet="outlet"></router-outlet>
+			<div class="accordion-content" [style.height.px]="accord_content_Ht" [style.width.px]="acord_cont_wd" *ngIf="item.id == '1'" [@fadeAnimation]="getRouterOutletState(scheduleoutlet)">
+                <router-outlet name='scheduleoutlet' #scheduleoutlet="outlet"></router-outlet>
 				<mat-spinner class="loader" [mode]="'indeterminate'" diameter="50" *ngIf="loadingRouteConfig"></mat-spinner>
             </div>
 			
-			<div class="accordion-content" [style.height.px]="accord_content_Ht" [style.width.px]="acord_cont_wd" *ngIf="item.id == '3'" [@fadeAnimation]="getRouterOutletState(outlet)">
-                <router-outlet name='outreachoutlet' #outlet="outlet"></router-outlet>
+			<div class="accordion-content" [style.height.px]="accord_content_Ht" [style.width.px]="acord_cont_wd" *ngIf="item.id == '3'" [@fadeAnimation]="getRouterOutletState(outreachoutlet)">
+                <router-outlet name='outreachoutlet' #outreachoutlet="outlet"></router-outlet>
 				<mat-spinner class="loader" [mode]="'indeterminate'" diameter="50" *ngIf="loadingRouteConfig"></mat-spinner>
             </div>
 			
-			<div class="accordion-content" [style.height.px]="accord_content_Ht" [style.width.px]="acord_cont_wd" *ngIf="item.id == '2'" [@fadeAnimation]="getRouterOutletState(outlet)">
-                <router-outlet name='outreachoutletx' #outlet="outlet"></router-outlet>
+			<div class="accordion-content" [style.height.px]="accord_content_Ht" [style.width.px]="acord_cont_wd" *ngIf="item.id == '2'" [@fadeAnimation]="getRouterOutletState(outreachoutletx)">
+                <router-outlet name='outreachoutletx' #outreachoutletx="outlet"></router-outlet>
 				<mat-spinner class="loader" [mode]="'indeterminate'" diameter="50" *ngIf="loadingRouteConfig"></mat-spinner>
             </div>
 			

@@ -7,7 +7,7 @@ import { OutreachmainComponent } from './outreachmain/outreachmain.component';
 
 export const routes: Routes = [
 	{path: '', component: OutreachmainComponent},
-	{path: 'outreach', component: OutreachmainComponent}
+	/*{path: 'outreach', component: OutreachmainComponent}*/
 
 ];
 

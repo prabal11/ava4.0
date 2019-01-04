@@ -7,16 +7,23 @@
             </div>
 			
 			<div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 0">
-                <app-analytics (getPanelSelected)="openPanelOption($event)"></app-analytics>
+				
+				<router-outlet name='analytics'></router-outlet>
+                
+				<!-- <app-analytics (getPanelSelected)="openPanelOption($event)"></app-analytics> -->
             </div>
 			
-			<div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 1">
-                <app-settings [blueboxHt]="acord_cont_ht"></app-settings>
+            <div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 1">
+               <!--  <app-pms [blueboxHt]="acord_cont_ht"></app-pms> -->
+			   <router-outlet name='pmt'></router-outlet>
             </div>
 			
-            <div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 2">
-                <app-pms [blueboxHt]="acord_cont_ht"></app-pms>
+			<div class="accordion-content" [style.height.px]="acord_cont_ht" *ngIf="indx == 2">
+                
+				<router-outlet name='settings'></router-outlet>
+				<!-- <app-settings [blueboxHt]="acord_cont_ht"></app-settings> -->
             </div>
+			
             <div [ngClass]="{'accordion-separator': itemclicked == true}" [ngStyle]="{'margin-bottom': item.checked === true ? acord_bottom_margin + 'px' : ''}"></div>
         </li> 
     </ul>

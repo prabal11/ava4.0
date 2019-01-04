@@ -3,6 +3,7 @@
 		<div fxFlex="56px" class="nav-btn vh_center border-right" (click)="slidetimer('left')">
 			<mat-icon class="timeline-timer-icon">keyboard_arrow_left</mat-icon>
 		</div>
+		
 		<div fxFlex="calc(100%-112px)" class="timer" #timer >
 			<div class="timeslot-cont-wrapper">
 				<perfect-scrollbar class="perfect-scrollbar" #timercomponent [config]="timerConfig">
@@ -25,6 +26,7 @@
 				</perfect-scrollbar>
 			</div>
 		</div>
+		
 		<div fxFlex="56px" class="nav-btn vh_center border-left" (click)="slidetimer('right')">
 			<mat-icon class="timeline-timer-icon">keyboard_arrow_right</mat-icon>
 		</div>

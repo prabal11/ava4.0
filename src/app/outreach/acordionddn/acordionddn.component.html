@@ -3,7 +3,7 @@
 		<div class="drpdn-title" (click)="toogleDropdown(indx)">{{drpdn.title}}</div>
 		<div class="drpdn-optn" *ngIf="drpdn.opendrpdn">
 			<ul>
-				<li *ngFor="let ddoption of drpdn.ddoptions" class="optn_title"><span>{{ddoption.title}}</span></li>
+				<li *ngFor="let ddoption of drpdn.ddoptions let optnindx=index" class="optn_title" (click)="selectedoption(indx, optnindx)"><span [ngClass]="{slctdoptn: ddoption.selected}">{{ddoption.title}}</span></li>
 				
 			</ul>
 		</div>

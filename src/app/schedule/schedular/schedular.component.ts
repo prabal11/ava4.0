@@ -1,10 +1,12 @@
 import { Component, OnInit, ElementRef, Inject, ViewChild, EventEmitter, Output, Input, HostListener } from '@angular/core';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarComponent, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef } from '@angular/material';
-
+import { Subscription } from 'rxjs';
 import { MessageService } from '../../core/message.service';
 
 import { MatCalendar } from '@angular/material';
+
+/*import domtoimage from 'dom-to-image';*/
 
 @Component({
   selector: 'app-schedular',
@@ -17,6 +19,8 @@ export class SchedularComponent implements OnInit {
 	public config: PerfectScrollbarConfigInterface = {wheelSpeed:0};
 	@ViewChild('scrollercomponent') scrollercomponent: PerfectScrollbarComponent;
 	
+	@ViewChild('schedularcont') schedularcont: ElementRef;
+	
 	dd_deck_label: string;
 	dd_chair_label: string;
 	
@@ -25,7 +29,7 @@ export class SchedularComponent implements OnInit {
 	alignLeft: string;
 	alignRight: string;
 	
-	search_options: string[] = ['Becca Kurfin', 'Estelle Goslin', 'Becky Smith', 'Belamy Wilson', 'Berry Holmes', 'Bethany Roland'];
+	search_options: any[] = [{'name': 'Becca Kurfin', 'id': 1}, {'name': 'Estelle Goslin', 'id': 2}, {'name': 'Becky Smith', 'id': 3}, {'name': 'Belamy Wilson', 'id': 4}, {'name': 'Berry Holmes', 'id': 5}, {'name': 'Bethany Roland', 'id': 6}];
 	
 	selectedDate: any;
 	userseldate: any;
@@ -45,19 +49,40 @@ export class SchedularComponent implements OnInit {
 	
 	showlastList: boolean = false;
 	
-	lastlistArr: any[] = [{name: 'Obi- Wan Kenobi'}, {name: 'Sheeve Palpatine'}, {name: 'Jar Jar Binks'}, {name: 'Darth Maul'}, {name: 'Qui - Gonn Jinn'}, {name: 'Padme Amidala'}, {name: 'Sio Bibble'}, {name: 'Poe Dameron'}, {name: 'Aayla Secura'}, {name: 'Jessika Pava'}];
+	lastlistArr: any[] = [{name: 'Obi- Wan Kenobi', dob: '06/19/1996'}, {name: 'Sheeve Palpatine', dob: '06/19/1996'}, {name: 'Jar Jar Binks', dob: '06/19/1996'}, {name: 'Darth Maul', dob: '06/19/1996'}, {name: 'Qui - Gonn Jinn', dob: '06/19/1996'}, {name: 'Padme Amidala', dob: '06/19/1996'}, {name: 'Sio Bibble', dob: '06/19/1996'}, {name: 'Poe Dameron', dob: '06/19/1996'}, {name: 'Aayla Secura', dob: '06/19/1996'}, {name: 'Jessika Pava', dob: '06/19/1996'}];
 	
 	views: any[] = [{label: "4 hour", value: 4}, {label: "2 hour", value: 2}, {label: "Entire day", value: 9}];
 	selectedviewIndx: any = 0;
 	
 	zoomviewport: any = 100;
 	zoomWd: any;
+	topbarZoomWd: any;
 	
-	@HostListener('window:resize', ['$event'])
-	onResize(event) {
+	subscription: Subscription;
+	openNewTab = 2;
+	
+	
+	@HostListener('window:resize', ['$event']) onResize(event) {
 		this.windowHt = (window.innerHeight - 350);
 		this.window_innerHt = window.innerHeight - 4;
 	}
+	
+	/*@HostListener('window:keydown', ['$event']) keyEvent(event: KeyboardEvent) {
+		
+		if(event.ctrlKey==true && event.which == 90){
+			console.log("ctrl + z pressed");
+			
+			var node = document.getElementById('schedularcont');
+
+			domtoimage.toPng(node).then(function (dataUrl) {
+				console.log(dataUrl);
+			}).catch(function (error) {
+				console.error('oops, something went wrong!', error);
+			});
+			
+			
+		}
+	}*/
 	
   constructor(public overlaydialog: MatDialog, private messageService: MessageService) { 
 	
@@ -69,6 +94,28 @@ export class SchedularComponent implements OnInit {
 	this.alignRight = 'right';
 	
 	this.selectedDate = new Date();
+	
+	this.subscription = this.messageService.getMessage().subscribe(message => {
+		if(message.event == 'newtabopen'){
+			let _newtabOpen = message.data;
+			this.openNewTab =  _newtabOpen;
+			
+			let innerWd: any = window.innerWidth - (this.openNewTab*46);
+			
+			/*if(window.innerWidth < 1758){
+				innerWd = 1758 - (this.openNewTab*48);
+			} else {
+				innerWd = window.innerWidth - (this.openNewTab*48);
+			}*/
+			
+			this.zoomWd = (innerWd - 395)*((100 + (100 - this.zoomviewport))/100);
+			this.topbarZoomWd = (innerWd)*((100 + (100 - this.zoomviewport))/100);
+			
+			//this.zoomWd = (1758 - 383 - (this.openNewTab*46))*((100 + (100 - this.zoomviewport))/100);
+			
+			
+		}
+	});
   }
 
   ngOnInit() {
@@ -76,15 +123,29 @@ export class SchedularComponent implements OnInit {
 		if(window.localStorage.getItem('zoomview') != null || window.localStorage.getItem('zoomview') != undefined) {
 			this.zoomviewport = Number(window.localStorage.getItem('zoomview'));
 		}
-		
+				
 		this.windowHt = (window.innerHeight/(this.zoomviewport/100) - 350);
-		this.zoomWd = (1728 - 488 + 60)*((100 + (100 - this.zoomviewport))/100);
+		
+		let innerWd: any = window.innerWidth - (this.openNewTab*48);
+		
+		/*if(window.innerWidth < 1758){
+			innerWd = 1758 - (this.openNewTab*48);
+		} else {
+			innerWd = window.innerWidth - (this.openNewTab*48);
+		}*/
+		
+		this.zoomWd = (innerWd - 395)*((100 + (100 - this.zoomviewport))/100);
+		this.topbarZoomWd = (innerWd)*((100 + (100 - this.zoomviewport))/100);
+		
+		//this.zoomWd = (1758 - 383 - (this.openNewTab*46))*((100 + (100 - this.zoomviewport))/100);
+		
+		
 		this.window_innerHt = window.innerHeight - 4;
 		
 		setTimeout(() => {
 			
 			let chckScrollPos: any = this.scrollercomponent.directiveRef.position();
-						
+			
 			if(chckScrollPos.y == 'end'){
 				this.scroll_dn = false;
 			} else {
@@ -199,8 +260,6 @@ export class SchedularComponent implements OnInit {
 		
 		this.messageService.sendMessage('scroll', this.timeline_scroll_y);
 		this.scrollercomponent.directiveRef.scrollTo(0, this.timeline_scroll_y, 500);
-		
-		
 	}
 	
 	resetCalender(){
@@ -233,8 +292,17 @@ export class SchedularComponent implements OnInit {
 		}
 		
 		this.windowHt = (window.innerHeight/(this.zoomviewport/100) - 350);
-		this.zoomWd = (1728 - 488 + 60)*((100 + (100 - this.zoomviewport))/100);
-		console.log('zoomwd: ', this.zoomWd);
+		
+		let innerWd: any = window.innerWidth - (this.openNewTab*46);
+		if(window.innerWidth < 1758){
+			innerWd = 1758 - (this.openNewTab*46);
+		} else {
+			innerWd = window.innerWidth - (this.openNewTab*46);
+		}
+		this.zoomWd = (innerWd - 420)*((100 + (100 - this.zoomviewport))/100);
+		this.topbarZoomWd = (innerWd-4)*((100 + (100 - this.zoomviewport))/100);
+		
+		//this.zoomWd = (innerWd - 383 - (this.openNewTab*46))*(this.zoomviewport/100);
 		
 		this.messageService.sendMessage('zoomview', this.zoomviewport);
 		
@@ -303,7 +371,7 @@ export class CalenderBox implements OnInit {
 		
 	/*matDialogConfig.position = { left: `${((rect.left*this.zoomviewport) - (76*this.zoomviewport + 42))}px`, top: `${(rect.bottom*this.zoomviewport + 20)}px`};*/
 	
-	matDialogConfig.position = { left: `${(rect.left) - (76*this.zoomviewport + 42)}px`, top: `${(rect.bottom + 20*this.zoomviewport)}px`};
+	matDialogConfig.position = { left: `${(rect.left) - (67*this.zoomviewport + 42)}px`, top: `${(rect.bottom + 9*this.zoomviewport)}px`};
 	
     this._matDialogRef.updateSize(matDialogConfig.width, matDialogConfig.height);
     this._matDialogRef.updatePosition(matDialogConfig.position);

@@ -46,9 +46,7 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
-	
 	this.generateCalendar();
-	
   }
   
   generateCalendar() {
@@ -77,6 +75,7 @@ export class CalendarComponent implements OnInit {
 	
 		let startDate_week = new Date(firstDay);
 		startDate_week.setDate(firstDay.getDate()+i);
+		
 		let holiday = false;
 		let today_bool = false;
 		

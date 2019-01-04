@@ -1,6 +1,6 @@
 <div fxLayout="column">
 	
-	<div class="title-bar">
+	<!-- <div class="title-bar">
 		<div class="patient-info">
 			<div class="patient-name">Estelle Goslin *Stella</div>
 			<div class="patient-status patient-info-block">Pending</div>
@@ -8,137 +8,246 @@
 			<div class="patient-appnt-time patient-info-block">Tues, June 3rd - Obs1</div>
 		</div>
 		
-		<div class="plus-btn-cont"><mat-icon class="search-panel-icon">add</mat-icon></div>
-		
-		<div class="search_panel">
-			<div fxLayout="row">
-				<div fxFlex="5" class="vh_center"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7.67797 1.38641C6.00228 -0.290262 3.27496 -0.290262 1.59927 1.38641C-0.0760588 3.06345 -0.0760588 5.792 1.59927 7.46903C2.96239 8.83262 5.01963 9.08406 6.64188 8.22889C6.86227 8.11271 7.15966 8.23564 7.33578 8.41187L9.77613 10.8536C10.1318 11.2087 10.7064 11.2087 11.0602 10.8536C11.4155 10.4982 11.4155 9.92316 11.0602 9.56878L8.61989 7.12628C8.44377 6.95056 8.32098 6.65375 8.437 6.43367C9.29288 4.81008 9.04172 2.75129 7.67797 1.38641ZM6.90751 6.69812C5.65646 7.9499 3.62042 7.9499 2.36973 6.69812C1.11941 5.44634 1.11941 3.40947 2.36973 2.15769C3.62042 0.906271 5.65646 0.906271 6.90751 2.15769C8.15856 3.40947 8.15856 5.44634 6.90751 6.69812Z" fill="#6BD3F4"/>
-</svg>
-</div>
-				<div fxFlex="90">
-					<input class="search-input" placeholder="Find Patient..." [matAutocomplete]="auto">
+		<div style="float: right; margin-right: 25px;">
+			<div class="search_panel">
+				<div fxLayout="row">
+					<div fxFlex="5" class="vh_center">
+						<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M7.67797 1.38641C6.00228 -0.290262 3.27496 -0.290262 1.59927 1.38641C-0.0760588 3.06345 -0.0760588 5.792 1.59927 7.46903C2.96239 8.83262 5.01963 9.08406 6.64188 8.22889C6.86227 8.11271 7.15966 8.23564 7.33578 8.41187L9.77613 10.8536C10.1318 11.2087 10.7064 11.2087 11.0602 10.8536C11.4155 10.4982 11.4155 9.92316 11.0602 9.56878L8.61989 7.12628C8.44377 6.95056 8.32098 6.65375 8.437 6.43367C9.29288 4.81008 9.04172 2.75129 7.67797 1.38641ZM6.90751 6.69812C5.65646 7.9499 3.62042 7.9499 2.36973 6.69812C1.11941 5.44634 1.11941 3.40947 2.36973 2.15769C3.62042 0.906271 5.65646 0.906271 6.90751 2.15769C8.15856 3.40947 8.15856 5.44634 6.90751 6.69812Z" fill="#6BD3F4"/>
+						</svg>
+					</div>
+					<div fxFlex="90">
+						<input class="search-input" placeholder="Find Patient..." [matAutocomplete]="auto">
+						
+						<mat-autocomplete #auto="matAutocomplete" class="search-auto-complete mat-elevation-z0">
+						  <mat-option *ngFor="let option of search_options" [value]="option" style="font-size: 12px; height: 30px;">
+							{{option}}
+						  </mat-option>
+						</mat-autocomplete>
+						
+					</div>
 					
-					<mat-autocomplete #auto="matAutocomplete" class="search-auto-complete mat-elevation-z0">
-					  <mat-option *ngFor="let option of search_options" [value]="option" style="font-size: 12px; height: 30px;">
-						{{option}}
-					  </mat-option>
-					</mat-autocomplete>
+					<div fxFlex="5" class="vh_center" (click)="showLast()">
+						<svg width="13" height="6" viewBox="0 0 13 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M6.5 6L12.1292 0H0.870835L6.5 6Z" fill="#4EC8F0"/>
+						</svg>
+					</div>
 					
-				</div>
-				
-				<div fxFlex="5" class="vh_center" (click)="showLast()">
-					<svg width="13" height="6" viewBox="0 0 13 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M6.5 6L12.1292 0H0.870835L6.5 6Z" fill="#4EC8F0"/>
-					</svg>
-				</div>
-				
-				<div class="lastnames-list" *ngIf="showlastList">
-					<perfect-scrollbar>
-						<ul>
-							<li *ngFor="let lastitem of lastlistArr"><div class="lastitem-label">{{lastitem.name}}</div></li>
-						</ul>
-					</perfect-scrollbar>
+					<div class="lastnames-list" *ngIf="showlastList">
+						<perfect-scrollbar>
+							<ul>
+								<li *ngFor="let lastitem of lastlistArr"><div class="lastitem-label">{{lastitem.name}}</div></li>
+							</ul>
+						</perfect-scrollbar>
+					</div>
+					
 				</div>
 				
 			</div>
 			
+			<div class="plus-btn-cont">
+				<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect y="3.8457" width="10" height="2.30769" fill="white"/>
+					<rect x="3.84583" width="2.30769" height="10" fill="white"/>
+				</svg>
+			</div>
+			
+			<div class="plus-btn-cont" style="width: 26px; height: 32px;">
+				<svg viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M4.09094 13.4434C4.4049 14.3417 5.28397 15.0005 6.28862 15.0005C7.29327 15.0005 8.23513 14.4016 8.61187 13.4434" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M8.60933 1.60016C9.13596 1.83247 9.62232 2.14784 10.042 2.54327C10.9977 3.44386 11.6282 4.77857 11.5866 6.55513L12.3364 6.57266C12.3827 4.59397 11.6744 3.051 10.5563 1.99742C9.95349 1.42939 9.23763 1.00918 8.46812 0.738281C8.55779 1.00792 8.60742 1.29796 8.60933 1.60016ZM3.83737 0.846661C3.24665 1.08715 2.68792 1.41992 2.18789 1.84751C0.980923 2.8796 0.137825 4.44566 0 6.53919L0.74838 6.58845C0.873903 4.6818 1.63284 3.30896 2.67531 2.41752C3.00078 2.13921 3.35601 1.90603 3.73138 1.71766C3.73024 1.68471 3.72966 1.65161 3.72966 1.61836C3.72966 1.34976 3.76735 1.09061 3.83737 0.846661Z" fill="white"/>
+					<path d="M11.7393 10.2696C11.4881 10.0899 11.1114 9.73056 10.7974 9.19153C10.609 8.83218 10.5462 8.59262 10.4207 8.17337C10.3579 7.63435 10.2323 6.91564 10.2323 6.07716C10.2323 5.7777 10.2323 4.81943 9.54159 3.86116C8.85089 2.90289 7.90903 2.60343 7.59508 2.48365C7.53228 1.82484 6.96717 1.3457 6.27647 1.3457C5.58577 1.3457 5.02066 1.88473 4.95787 2.48365C3.3881 3.02267 2.25787 4.40019 2.25787 6.07716C2.25787 6.91564 2.13228 7.57445 2.06949 8.05359C2.06949 8.47283 1.94391 8.89207 1.62996 9.37121C1.44159 9.67067 1.31601 9.91024 1.00205 10.2097C0.81368 10.4493 0.625308 10.569 0.499727 10.8086C0.374145 11.0482 0.374146 11.2877 0.374146 11.3476C0.374146 11.4075 0.374146 12.0064 0.81368 12.3658C1.25322 12.785 1.81833 12.7252 1.88112 12.7252C4.89508 12.7252 7.84624 12.7252 10.8602 12.7252C10.923 12.7252 11.7393 12.785 12.1788 12.1861C12.43 11.8268 12.3672 11.4674 12.3672 11.2877C12.2416 10.7487 11.8648 10.3894 11.7393 10.2696Z" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
+				</svg>
+				
+				<div class="notifictn_available"></div>
+			</div>
 		</div>
-		
 		<div class="clear"></div>
-		
 		<div class="zoom-cont">
 			<div class="zoom-btn plus-btn" (click)="zoomView('in')"><mat-icon class="zoom-icon">remove</mat-icon></div>
 			<div class="zoom-value">{{zoomviewport}}%</div>
 			<div class="zoom-btn minus-btn" (click)="zoomView('out')"><mat-icon class="zoom-icon" >add</mat-icon></div>
 		</div>
-		
-	</div>
+	</div> -->
 	
 	<div [ngStyle]="{'height': windowContHt + 'px', 'width': '100%', 'overflow': 'hidden'}">
 	
 	<perfect-scrollbar #profilescroll>
 		<!-- <div style="width: 1759px; box-sizing: border-box;" [ngStyle]="{'height': windowHt + 'px'}"> -->
-		<div style="box-sizing: border-box; transform-origin: 0 0; position: relative;" [ngStyle]="{'transform': 'scale('+ (zoomviewport/100) +')', 'width': (1759*(zoomviewport/100)) + 'px', 'height': (761*(zoomviewport/100)) + 'px'}">
+		<div style="box-sizing: border-box; transform-origin: 0 0; position: relative;" [ngStyle]="{'transform': 'scale('+ (zoomviewport/100) +')', 'width': '100%'}">
 		
 
 			<div fxLayout="row">
-				<div fxFlex="calc(1769px - 330px)" style="padding-top: 22px; padding-left: 30px">
-					
-					<div fxLayout="row" fxLayoutGap="12px">
-					
-						<div fxFlex="190px" class="card-elem" >
-							<div class="card-content-section" style="padding-top: 60px;">
-								<div class="section-title">Alert</div>
-								<div class="section-content section-content-red">Allergic to codiene, is austistic (don’t make direct eye contact). Hippa release has not been signed</div>
-							</div>
-							
-							<div class="card-content-section">
-								<div class="section-title">Patient Referral</div>
-								<div class="section-content">
-									<ul>
-										<li>John Smith</li>
-										<li>Paula Jones</li>
-										<li class="thanks">Jackie Mendoza - Thank you!</li>
-									</ul>
+				<div fxFlex="100%" style="padding-top: 22px; padding-left: 10px">
+					<div fxLayout="row" fxLayoutGap="10px">
+						<!-- <div fxFlex="190px" class="card-elem" style="padding-left: 0; padding-right: 0; padding-top: 30px;"> -->
+						
+						<div fxFlex="13.5">
+							<div class="flip-container">
+								<div class="flipper" [ngStyle]="{'transform': 'rotateY(' + rotateOnY + 'deg)'}">
+									<div class="card-elem card1 flipcard1" style="padding-left: 0; padding-right: 0;">
+									<div class="notification-cont">
+										<app-treatment-notification></app-treatment-notification>
+									</div>
+									
+										<!-- <div class="todolist-bar">
+											<div class="todo-icon" (click)="openTodoList($event)">
+												<div class="todo-available"></div>
+												<svg width="14" height="17" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M4.7168 14.4434C5.03075 15.3417 5.90982 16.0005 6.91447 16.0005C7.91912 16.0005 8.86098 15.4016 9.23773 14.4434" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
+			<path d="M1 7.56408C1.5267 -0.436286 12.7629 0.0536634 12.5873 7.56416" stroke="white" stroke-width="0.75"/>
+			<ellipse cx="6.7957" cy="2.61813" rx="2.43987" ry="2.61813" fill="#4EC8F0"/>
+			<path d="M12.3651 11.2696C12.114 11.0899 11.7372 10.7306 11.4233 10.1915C11.2349 9.83218 11.1721 9.59262 11.0465 9.17337C10.9837 8.63435 10.8581 7.91564 10.8581 7.07716C10.8581 6.7777 10.8581 5.81943 10.1674 4.86116C9.47674 3.90289 8.53488 3.60343 8.22093 3.48365C8.15814 2.82484 7.59302 2.3457 6.90232 2.3457C6.21163 2.3457 5.64651 2.88473 5.58372 3.48365C4.01395 4.02267 2.88372 5.40019 2.88372 7.07716C2.88372 7.91564 2.75814 8.57445 2.69535 9.05359C2.69535 9.47283 2.56977 9.89207 2.25581 10.3712C2.06744 10.6707 1.94186 10.9102 1.62791 11.2097C1.43953 11.4493 1.25116 11.569 1.12558 11.8086C1 12.0482 1 12.2877 1 12.3476C1 12.4075 1 13.0064 1.43953 13.3658C1.87907 13.785 2.44419 13.7252 2.50698 13.7252C5.52093 13.7252 8.47209 13.7252 11.486 13.7252C11.5488 13.7252 12.3651 13.785 12.8047 13.1861C13.0558 12.8268 12.993 12.4674 12.993 12.2877C12.8674 11.7487 12.4907 11.3894 12.3651 11.2696Z" stroke="white" stroke-width="0.75" stroke-miterlimit="10"/>
+			</svg>
+											</div>
+										</div> -->
+										
+										<div class="card-section-wrapper">
+											<!-- <div class="card-section-cont animatecard" [ngStyle]="{'margin-left': animateFirstCard + 'px'}"> -->
+												<div class="card-section-item">
+													
+													<!-- <perfect-scrollbar> -->
+														<div style="padding-left: 10px; padding-right: 10px;">
+															<div class="card-content-section" style="padding-top: 30px;">
+																<div class="section-title">Alert</div>
+																<div class="section-content section-content-red">Allergic to codiene, is austistic (don’t make direct eye contact). Hippa release has not been signed</div>
+															</div>
+															
+															<div class="card-content-section">
+																<div class="section-title">Patient Referral</div>
+																<div class="section-content">
+																	<ul>
+																		<li>John Smith</li>
+																		<li>Paula Jones</li>
+																		<li class="thanks">Jackie Mendoza - Thank you!</li>
+																	</ul>
+																</div>
+															</div>
+															
+															<div class="card-content-section">
+																<div class="section-title">Professional Referral</div>
+																<div class="section-content">
+																	<ul>
+																		<li>Dr. Jim Holmes <span class="desg-italic">Oral Surgeon</span></li>
+																		<li>Dr. Jane Nolan <span class="desg-italic">Pediatric Dentist</span></li>
+																	</ul>
+																</div>
+															</div>
+															
+															<div class="card-content-section">
+																<div class="section-title" (click)="flipSlide()">Relationships</div>
+																<div class="section-content">
+																	<ul>
+																		<li>MO - Clarissa Marcum </li>
+																		<li>FA- Peter Goslin</li>
+																		<li>SF- Spencer Marcum</li>
+																	</ul>
+																</div>
+															</div>
+															
+															<div class="card-content-section">
+																<div class="section-title">Dentist</div>
+																<div class="section-content">
+																	<ul>
+																		<li>Dr. Susan Smiley</li>
+																		<li>Dr. Sam Walters</li>
+																	</ul>
+																</div>
+															</div>
+															
+															<div class="card-content-section">
+																<div class="section-title">Comment</div>
+																<div class="section-content">
+																	Parents are divorced. Mom (Clarissa) is bringing Stella into the office but all financial information should be sent to Dad (Peter).
+																</div>
+															</div>
+														
+														</div>
+													
+													<!-- </perfect-scrollbar> -->
+												</div>
+												
+												
+												
+												<!-- <div class="clear"></div> -->
+											<!-- </div> -->
+										</div>
+									</div>
+									<div class="card-elem card1 flipcard2" style="padding-left: 0; padding-right: 0;">
+										<div class="card-section-item">
+											<app-relationshipcard (goback)="goback($event)"></app-relationshipcard>
+										</div>
+									</div>
 								</div>
 							</div>
 							
-							<div class="card-content-section">
-								<div class="section-title">Professional Referral</div>
-								<div class="section-content">
-									<ul>
-										<li>Dr. Jim Holmes <span class="desg-italic">Oral Surgeon</span></li>
-										<li>Dr. Jane Nolan <span class="desg-italic">Pediatric Dentist</span></li>
-									</ul>
-								</div>
-							</div>
-							
-							<div class="card-content-section">
-								<div class="section-title">Dentist</div>
-								<div class="section-content">
-									<ul>
-										<li>Dr. Susan Smiley</li>
-										<li>Dr. Sam Walters</li>
-									</ul>
-								</div>
-							</div>
-							
-							<div class="card-content-section">
-								<div class="section-title">Comment</div>
-								<div class="section-content">
-									Parents are divorced. Mom (Clarissa) is bringing Stella into the office but all financial information should be sent to Dad (Peter).
+						</div>
+						
+						<!-- <div fxFlex="293px" class="card-elem"> -->
+						<div fxFlex="20.8">
+							<div class="flip-container">
+								<div class="flipper" [ngStyle]="{'transform': 'rotateY(' + diagnosticRotateY + 'deg)'}">
+									<div class="card-elem card2 flipcard1">
+										<div class="icon" (click)="diagnosticRot()">
+											<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M1.2459 7.23996L0.706284 9.19288L2.65798 8.65319L2.65939 8.6546L8.26595 3.04593L6.85338 1.63282L1.24713 7.24119L1.2459 7.23996Z" fill="#56CCF2"/>
+												<path d="M7.17944 1.30664L8.20188 0.283814C8.35806 0.127574 8.61128 0.127574 8.76746 0.283813L9.61445 1.13112C9.77063 1.28736 9.77063 1.54068 9.61445 1.69692L8.59201 2.71974L7.17944 1.30664Z" fill="#56CCF2"/>
+											</svg>
+										</div>
+										
+										<div style="width: 100%;">
+											<!-- <perfect-scrollbar> -->
+												<app-multileveldrpdn [multidrpdndata] = "diagnosisArr"></app-multileveldrpdn>
+											<!-- </perfect-scrollbar> -->
+										</div>
+										
+										
+										
+										<div class="fixed-content">
+											<div class="notes">
+												<p>Notes:</p>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor</p>
+											</div>
+											<div class="card-title">
+												<div class="updatedon">updated: 10/18/18</div>
+												<div class="card-title-label">Diagnosis</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="card-elem card2 flipcard2">
+										<div class="icon" (click)="diagnosticRot()">
+											<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="6" cy="6" r="5.75" stroke="#4EC8F0" stroke-width="0.5"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.37639 4.25772C9.26647 4.15758 9.09619 4.16551 8.99605 4.27542L5.27214 8.36294L3.52272 6.76914C3.41281 6.669 3.24252 6.67693 3.14238 6.78684C3.04225 6.89676 3.05017 7.06704 3.16009 7.16718L5.0245 8.86574C5.03918 8.90091 5.06159 8.9335 5.09162 8.96085C5.20154 9.06099 5.37182 9.05307 5.47196 8.94315L9.39409 4.63806C9.49423 4.52814 9.4863 4.35786 9.37639 4.25772Z" fill="#434343"/>
+</svg>
+										</div>
+										
+										<div style="width: 100%;">
+											<!-- <perfect-scrollbar> -->
+												<app-selected-ddoptions [drpdndata]="diagnosisArr"></app-selected-ddoptions>
+											<!-- </perfect-scrollbar> -->
+										</div>
+										
+										<div class="fixed-content">
+											<div class="notes">
+												<p>Notes:</p>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor</p>
+											</div>
+											<div class="card-title">
+												<div class="updatedon">updated: 10/18/18</div>
+												<div class="card-title-label">Diagnosis</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div fxFlex="293px" class="card-elem">
-							<div class="icon">
-								<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path fill-rule="evenodd" clip-rule="evenodd" d="M1.2459 7.23996L0.706284 9.19288L2.65798 8.65319L2.65939 8.6546L8.26595 3.04593L6.85338 1.63282L1.24713 7.24119L1.2459 7.23996Z" fill="#56CCF2"/>
-									<path d="M7.17944 1.30664L8.20188 0.283814C8.35806 0.127574 8.61128 0.127574 8.76746 0.283813L9.61445 1.13112C9.77063 1.28736 9.77063 1.54068 9.61445 1.69692L8.59201 2.71974L7.17944 1.30664Z" fill="#56CCF2"/>
-								</svg>
-							</div>
-							
-							<div style="width: 100%; height: 320px; overflow: hidden;">
-								<perfect-scrollbar>
-									<app-multileveldrpdn [multidrpdndata] = "diagnosisArr"></app-multileveldrpdn>
-								</perfect-scrollbar>
-							</div>
-							
-							<div class="fixed-content">
-								<div class="notes">
-									<p>Notes:</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolor</p>
-								</div>
-								<div class="card-title">
-									<div class="updatedon">updated: 10/18/18</div>
-									<div class="card-title-label">Diagnosis</div>
-								</div>
-							</div>
-						</div>
 					
-						<div fxFlex="435px" class="card-elem">
-							<div class="card-content-section">
+						<!-- <div fxFlex="435px" class="card-elem"> -->
+						<div fxFlex="30.9" class="card-elem card3">
+							<app-xray-scan [consq_visit]="consq_visit"></app-xray-scan>
+							<!-- <div class="card-content-section">
 								<div class="section-title no-underline bottom-border">
 									<p>Pre-Exam</p>
 									<p>09/24/13</p>
@@ -175,7 +284,7 @@
 									
 									<div class="clear"></div>
 								</div>
-							</div>
+							</div> -->
 							
 							<div class="fixed-content">
 								
@@ -195,60 +304,47 @@
 						</div>
 					
 					
-						<div fxFlex="241px">
-							<app-cardaccordion></app-cardaccordion>			
+						<!-- <div fxFlex="241px"> -->
+						<div fxFlex="17.14" class="card4">
+							<app-cardaccordion [consq_visit]="consq_visit"></app-cardaccordion>			
 						</div>
 						
-						<div fxFlex="167px" class="card-elem" style="padding-right: 0;">
+						<!-- <div fxFlex="167px"> -->
+						<div fxFlex="167px">
 							<app-treatmentmeter></app-treatmentmeter>
 						</div>
 					</div>
 					
-					<div fxLayout="row" fxLayoutGap="12px" style="margin-top: 30px; margin-bottom: 30px;">
-						<div fxFlex="495px">
+					<div fxLayout="row" fxLayoutGap="12px" style="margin-top: 30px; margin-bottom: 30px;" *ngIf="consq_visit">
+						<!-- <div fxFlex="495px">
 							<div class="tab-cont">
 								<div class="tab-btn">Treatment</div>
 								<div class="tab-btn">Initial Exam</div>
 							</div>
-						</div>
+						</div> -->
 						
-						<div fxFlex="867px" class="card-elem" style="height: 322px; padding: 0;">
+						<div fxFlex="908px" class="card-elem" [ngStyle]="{'height': tableHt +'px', 'padding': '0px', 'min-height': '70px'}">
 							
 							<div class="treatment-table">
+								
 								<div class="treatment-table-header">
-									<div class="treatment-header-cell">Date / Time</div>
-									<div class="treatment-header-cell">UW</div>
-									<div class="treatment-header-cell">LW</div>
-									<div class="treatment-header-cell">Hyg</div>
-									<div class="treatment-header-cell">Appl</div>
-									<div class="treatment-header-cell">St</div>
-									<div class="treatment-header-cell">Dr</div>
-									<div class="treatment-header-cell left-align">Notes</div>
-									<div class="treatment-header-cell left-align">Next Notes</div>
-									<div class="treatment-header-cell">Proc</div>
+									<div class="treatment-header-cell" style="width: 102px;">Date / Time</div>
+									<div class="treatment-header-cell" style="width: 69px;">UW</div>
+									<div class="treatment-header-cell" style="width: 49px;">LW</div>
+									<div class="treatment-header-cell" style="width: 30px; padding-left: 0; padding-right: 0;">Hyg</div>
+									<div class="treatment-header-cell" style="width: 34px; padding-left: 0; padding-right: 0;">Appl</div>
+									<div class="treatment-header-cell" style="width: 34px;">St</div>
+									<div class="treatment-header-cell" style="width: 44px;">Dr</div>
+									<div class="treatment-header-cell left-align" style="width: 277px;">Notes</div>
+									<div class="treatment-header-cell left-align" style="width: 147px;">Next Notes</div>
+									<div class="treatment-header-cell" style="width: 41px;">Proc</div>
 									<div class="treatment-header-cell">U</div>
 									<div class="treatment-header-cell">Wks</div>
 								</div>
-								
-								<!-- <div class="treatment-table-body">
-									<div class="treatment-body-cell">11/30/18 09:43 a</div>
-									<div class="treatment-body-cell">019x025N</div>
-									<div class="treatment-body-cell"></div>
-									<div class="treatment-body-cell">+</div>
-									<div class="treatment-body-cell"></div>
-									<div class="treatment-body-cell">JP</div>
-									<div class="treatment-body-cell">Thom</div>
-									<div class="treatment-body-cell left-align">Trimmed U de’s - gave pt wax to help cheek heal</div>
-									<div class="treatment-body-cell left-align">Eval Only</div>
-									<div class="treatment-body-cell">Eval</div>
-									<div class="treatment-body-cell"></div>
-									<div class="treatment-body-cell">6 wk</div>
-								</div> -->
-								
 							</div>
 							
 							<div class="treatment-table">
-								<div style="width: 867px; height: 290px; overflow: hidden">
+								<div [ngStyle]="{'width': '908px', 'min-height': '40px', 'overflow': 'hidden', 'height': (tableHt-30) + 'px'}">
 								
 									<perfect-scrollbar>
 									
@@ -260,31 +356,34 @@
 											<div class="treatment-body-cell">{{tretmentItem.Appl}}</div>
 											<div class="treatment-body-cell">{{tretmentItem.St}}</div>
 											<div class="treatment-body-cell">{{tretmentItem.dr}}</div>
-											<div class="treatment-body-cell left-align wrap-text italic-style">{{tretmentItem.notes}}</div>
-											<div class="treatment-body-cell left-align wrap-text italic-style">{{tretmentItem.next_notes}}</div>
+											<div class="treatment-body-cell left-align wrap-text italic-style" style="width: 287px;">{{tretmentItem.notes}}</div>
+											<div class="treatment-body-cell left-align wrap-text italic-style" style="width: 147px;">{{tretmentItem.next_notes}}</div>
 											<div class="treatment-body-cell">{{tretmentItem.Proc}}</div>
-											<div class="treatment-body-cell">{{tretmentItem.U}}</div>
+											<div class="treatment-body-cell" style="width: 41px;">{{tretmentItem.U}}</div>
 											<div class="treatment-body-cell">{{tretmentItem.Wks}}</div>
 										</div>
 									</perfect-scrollbar>
 								</div>
-								
 							</div>
-							
 						</div>
-						
 					</div>
-				
+					
+					<div class="tab-cont" [ngStyle]="{'margin-top': (consq_visit == false ? (tableHt+60) : 0) + 'px'}">
+						<div class="tab-btn">Treatment</div>
+						<div class="tab-btn">Initial Exam</div>
+					</div>
+					
+					
 				</div>
 				
 				
-				<div fxFlex="330px" class="right-panel" >
+				<!-- <div fxFlex="330px" class="right-panel" >
 					<app-chair [chairDetails]="patientInChair" [activepatient]="true"></app-chair>
 					
 					<div class="other-patient-panel">
 						<app-chair *ngFor="let chair of chair_labelArr" [chairDetails]="chair" [activepatient]="false"></app-chair>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		
@@ -293,8 +392,8 @@
 		</perfect-scrollbar>
 		</div>
 		
-	<div class="profile-cont">
+	<!-- <div class="profile-cont">
 		<img src="assets/492730210_1.png" width="100%" />
-	</div>
+	</div> -->
 	
 </div>

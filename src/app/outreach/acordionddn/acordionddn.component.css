@@ -22,7 +22,7 @@
 	color: #A5A5A5;
 	cursor: pointer;
 	font-weight: bold;
-	margin-bottom: 5px;
+	margin-bottom: 7px;
 	box-sizing: border-box;
 }
 
@@ -35,6 +35,12 @@
 }
 
 .optn_title span:hover {
+	color: #FFFFFF;
+	background: #4EC8F0;
+	border-radius: 1px;
+}
+
+.slctdoptn {
 	color: #FFFFFF;
 	background: #4EC8F0;
 	border-radius: 1px;

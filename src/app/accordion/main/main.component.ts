@@ -40,8 +40,8 @@ export class MainComponent implements OnInit {
 	panelArr: any[] = [
 		{id: 0, title: 'Admin', checked: true}, 
 		{id: 1, title: 'Schedule', checked: false}, 
-		{id: 2, title: 'Avas Outreach', checked: false},
-		/*{title: 'Treatment Card', checked: false},*/
+		/*{id: 2, title: 'Avas Outreach', checked: false},
+		{title: 'Treatment Card', checked: false},*/
 	];
 	
 	tabIndx: any = this.panelArr.length-1;
@@ -84,6 +84,8 @@ export class MainComponent implements OnInit {
 			this.acord_margin = window.innerWidth - (this.zoomWd*this.panelArr.length);
 			this.acord_cont_wd = this.acord_margin;
 			
+			this.messageService.sendMessage('newtabopen', this.panelArr.length);
+			
 			setTimeout(() => {
 				this.activePanel(this.tabIndx);
 			}, 800)
@@ -108,11 +110,14 @@ export class MainComponent implements OnInit {
 	this.router.events.subscribe(event => {
     if(event instanceof NavigationStart) {
       this.loadingRouteConfig = true;
-      console.log("event started")
+      //console.log("event started")
     }else if(event instanceof NavigationEnd) {
       this.loadingRouteConfig = false;
-      console.log("event end")
+      //console.log("event end")
     }
+	
+	this.messageService.sendMessage('newtabopen', this.panelArr.length);
+	
   });
 	
   }

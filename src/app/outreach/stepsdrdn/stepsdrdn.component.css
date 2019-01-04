@@ -1,0 +1,55 @@
+.drpdn-title {
+	font-weight: bold;
+	font-size: 11px;
+	color: #4EC8F0;
+	cursor: pointer;
+}
+
+.drpdn-cont {
+	margin-bottom: 10px;
+}
+
+.drpdn-optn {
+	/* padding-left: 25px; */
+}
+
+.drpdn-optn ul {
+	list-style: none;
+}
+
+.optn_title {
+	font-size: 11px;
+	color: #333333;
+	cursor: pointer;
+	/* font-weight: bold; */
+	margin-bottom: 7px;
+	box-sizing: border-box;
+}
+
+.optn_title:first-child {
+	margin-top: 5px;
+}
+
+.optn_title span {
+	padding: 2px 3px 3px;
+}
+
+.selectedOptn {
+	color: #FFFFFF;
+	background: #4EC8F0;
+	border-radius: 1px;
+}
+
+.ddlabel {
+	float: left;
+}
+
+.duration {
+	float: right;
+	text-align: right;
+	color: #4EC8F0;
+}
+
+.clear {
+	clear: both;
+}

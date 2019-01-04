@@ -44,15 +44,12 @@ export class MultileveldrpdnComponent implements OnInit {
 		}
 	})
 	
-	
 	this.multidrpdndata[sel_indx].ddoptions[subdrpdn]['opensubdrpdn'] = this.multidrpdndata[sel_indx].ddoptions[subdrpdn]['opensubdrpdn'] == true ? false : true;
-	
-	
   }
   
   selectedOptn(sel_indx, subdrpdn, optnindx) {
 	
-	console.log(optnindx, this.multidrpdndata[sel_indx].ddoptions[subdrpdn].suboptn[optnindx].title);
+	/*console.log(optnindx, this.multidrpdndata[sel_indx].ddoptions[subdrpdn].suboptn[optnindx].title);*/
 	
 	this.multidrpdndata[sel_indx].ddoptions[subdrpdn]['selectedOptn'] = this.multidrpdndata[sel_indx].ddoptions[subdrpdn].suboptn[optnindx].title
   }

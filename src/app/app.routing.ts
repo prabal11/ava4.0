@@ -8,7 +8,7 @@ import { ModuleWithProviders } from '@angular/core';
 ];*/
 
 export const routes: Routes = [
-	/*{path: '**', pathMatch: 'full', redirectTo: '/ava/(adminoutlet:admin)'},*/
+	
 	{path: '', loadChildren: './accordion/accordion.module#AccordionModule'}
 ];
 

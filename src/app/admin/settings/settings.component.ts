@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MessageService } from '../../core/message.service';
 
@@ -34,6 +34,7 @@ export class SettingsComponent implements OnInit {
 	animatetop: any;
 	
 	openMenu = false;
+	sectionOpen: any;
 	
 	@HostListener('window:resize', ['$event'])
 	onResize(event) {
@@ -50,7 +51,7 @@ export class SettingsComponent implements OnInit {
 		
 	}
 	
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private router: Router) {
 	
 	this.subscription = this.messageService.getMessage().subscribe(message => {
 		if(message.event == 'openOption' && message.data.panel == '1'){
@@ -85,6 +86,7 @@ export class SettingsComponent implements OnInit {
 	
 	this.animatetop = -this.animatebottom;
 	
+	
   }
   
   animateElements(section) {
@@ -107,17 +109,44 @@ export class SettingsComponent implements OnInit {
 		
 		this.openMenu = true;
 	} else {
-		this.openMenu = false;
-		this.activeOperation = false;
-		this.activeClinic = false;
-		this.activeFinances = false;
+		
+		if(this.sectionOpen != section){
+			
+			if(section == 'operations'){
+				this.activeOperation = true;
+				this.activeClinic = false;
+				this.activeFinances = false;
+			} else if(section == 'clinic'){
+				this.activeOperation = false;
+				this.activeClinic = true;
+				this.activeFinances = false;
+			} else if(section == 'finances'){
+				this.activeOperation = false;
+				this.activeClinic = false;
+				this.activeFinances = true;
+			}
+			
+			this.openMenu = true;
+			
+		} else {
+			this.openMenu = false;
+			this.activeOperation = false;
+			this.activeClinic = false;
+			this.activeFinances = false;
+		}
 	}
+	
+	this.sectionOpen = section;
   }
   
   closeOptions() {
 	this.activeOperation = false;
 	this.activeClinic = false;
 	this.activeFinances = false;
+  }
+  
+  loadPage() {
+	this.router.navigate(['../settings']);
   }
   
   

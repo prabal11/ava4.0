@@ -29,5 +29,13 @@ export class AcordionddnComponent implements OnInit {
 	this.drpdndata[sel_indx]['opendrpdn'] = this.drpdndata[sel_indx]['opendrpdn'] == true ? false : true;
 	
   }
+  
+  selectedoption(indx, optnindx) {
+	
+	/*console.log(this.drpdndata[indx].ddoptions[optnindx]);*/
+	
+	this.drpdndata[indx].ddoptions[optnindx].selected = this.drpdndata[indx].ddoptions[optnindx].selected == false ? true : false;
+	
+  }
 
 }

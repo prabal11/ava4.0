@@ -10,7 +10,7 @@ export class TreatmentmeterComponent implements OnInit {
 	treatmentMonth = 9;
 	elapsedMonth = 7.8;
 	markerArr: any[] = [];
-	markerHt: any = 467;
+	markerHt: any = 505;
 	timeElaspsed: any = 0;
 	timeElaspsed_percentage: any = 72;
 	
@@ -27,6 +27,16 @@ export class TreatmentmeterComponent implements OnInit {
 	movePos: any = 0;
 	movecount: any = 0;
 	
+	singleMeter: any = true;
+	financialMeter: any = false;
+	
+	flipcard: any = false;
+	
+	card2: boolean = true;
+	card3: any = false;
+	
+	rotateOnY = 0;
+	
   constructor() { }
 
   ngOnInit() {
@@ -41,18 +51,33 @@ export class TreatmentmeterComponent implements OnInit {
 				
 		for(let i=0; i<11; i++){
 			this.markerArr[i] = markerSpace*i;
-		}
-		
+		}	
+  }
+  
+  showPanel() {
+	/*this.card2 = true;
+	this.card3 = false;*/
 	
+	
+	this.singleMeter = this.singleMeter == true ? false : true;
+	this.financialMeter = this.financialMeter == true ? false : true;
   }
   
   nextSlide() {
-	this.movecount++;
-	if(this.movecount > 2){
+	/*this.movecount++;
+	if(this.movecount > 1){
 		this.movecount = 0;
 	}
 	
-	this.movePos = -(this.movecount*167);
+	this.movePos = -(this.movecount*167);*/
+	
+	this.card2 = false;
+	this.card3 = true;
+		
+	/*this.flipcard = this.flipcard == true ? false : true;*/
+	
+	this.rotateOnY -= 180;
+	
   }
 
 }

@@ -11,7 +11,7 @@ export class ChairComponent implements OnInit {
 
 	@Input() public chairDetails;
 	
-	radius = 24;
+	radius = 21;
 	circumference = 2 * Math.PI * this.radius;
 	dashoffset: number;
 	

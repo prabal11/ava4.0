@@ -16,7 +16,8 @@ export class TimelineComponent implements OnInit {
 	windowHt: any;
 	
 	clockWd: any = 0;
-	clockInterval: any;
+	clockInterval:any;
+	checkTimeInterval:any;
 	
 	public config: PerfectScrollbarConfigInterface = {wheelSpeed:0, suppressScrollX: false};
 	public timerConfig: PerfectScrollbarConfigInterface = {wheelSpeed:0, suppressScrollX: false};
@@ -38,12 +39,10 @@ export class TimelineComponent implements OnInit {
 	scrollablecont_wd = 114;
 	
 	timer_width: any;
-	timer_view: any;
+	timer_view: any = 4;
 	
 	slot_space:any;
 	block_space: any;
-	
-	checkTimeInterval:any;
 	
 	views: any[] = [{label: "4 hour", value: 4}, {label: "2 hour", value: 2}, {label: "Entire day", value: 9}];
 	selectedviewIndx: any = 0;
@@ -59,7 +58,7 @@ export class TimelineComponent implements OnInit {
 			this.zoomviewport = Number(window.localStorage.getItem('zoomview'));
 		}
 			
-		this.windowHt = (window.innerHeight/(this.zoomviewport/100) - 330);
+		this.windowHt = (window.innerHeight/(this.zoomviewport/100) - 305);
 	}
 	
   constructor(private messageService: MessageService) { 
@@ -179,7 +178,9 @@ export class TimelineComponent implements OnInit {
 		
 		if(message.event == 'zoomview'){
 			this.zoomviewport = message.data;
-			this.windowHt = (window.innerHeight/(this.zoomviewport/100) - 330);
+			this.windowHt = (window.innerHeight/(this.zoomviewport/100) - 305);
+			
+			this.changeView();
 		}
 		
 	});
@@ -193,13 +194,19 @@ export class TimelineComponent implements OnInit {
 		this.zoomviewport = Number(window.localStorage.getItem('zoomview'));
 	}
 		
-	this.windowHt = (window.innerHeight/(this.zoomviewport/100) - 330);
+	this.windowHt = (window.innerHeight/(this.zoomviewport/100) - 305);
 	
 	this.timer_width = this.timer.nativeElement.offsetWidth;
 	this.timer_view = this.views[this.selectedviewIndx].value;
+		
+	/*this.createTimeGuide();
+	this.clock();*/
 	
-	this.createTimeGuide();
-	this.clock();
+	setTimeout(() => {
+		this.changeView();
+	}, 500)
+	
+	
 	
   }
   
@@ -238,9 +245,10 @@ export class TimelineComponent implements OnInit {
 		}
 	}
 	
+	
 	this.checkTimeInterval = setInterval(() => {
 		
-		//console.log("checkTimeInterval");
+		console.log("checkTimeInterval");
 		
 		let today = new Date();
 		let start_time_hr:any = Number(this.startTime.split(':')[0]);
@@ -286,31 +294,31 @@ export class TimelineComponent implements OnInit {
 			setTimeout(() => {
 				
 				today = new Date();
-					nowTime_sec = `01/01/2018 ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+				nowTime_sec = `01/01/2018 ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
 					
-					if(this.clockWd >= 380){			
-						let checkScrollability: any = this.timercomponent.directiveRef.position();
-						if(checkScrollability.x != 'end'){
-							this.timerScroll += (this.slot_space/60);
-						
-							this.timercomponent.directiveRef.scrollTo(this.timerScroll, 0, 500);
-							this.patientcomponent.directiveRef.scrollTo(this.timerScroll, this.timeline_scroll_y, 500);
-						}
-					}
+				if(this.clockWd >= 380){
+					let checkScrollability: any = this.timercomponent.directiveRef.position();
+					if(checkScrollability.x != 'end'){
+						this.timerScroll += (this.slot_space/60);
 					
-					if(Date.parse(nowTime_sec) < Date.parse(end_time_sec)){
-						console.log('OPEN');
-						
-						currentHr = Math.abs(start_time_hr - today.getHours());
-						currentMin = today.getMinutes();
-						currentSec = today.getSeconds();
-						
-						this.clockWd = (currentHr*60 + currentMin + currentSec/60)*(this.slot_space/60) + this.block_space;
-						
-					} else {
-						console.log('CLOSE');
-						clearInterval(this.clockInterval);
+						this.timercomponent.directiveRef.scrollTo(this.timerScroll, 0, 500);
+						this.patientcomponent.directiveRef.scrollTo(this.timerScroll, this.timeline_scroll_y, 500);
 					}
+				}
+					
+				if(Date.parse(nowTime_sec) < Date.parse(end_time_sec)){
+					console.log('before interval OPEN');
+					
+					currentHr = Math.abs(start_time_hr - today.getHours());
+					currentMin = today.getMinutes();
+					currentSec = today.getSeconds();
+					
+					this.clockWd = (currentHr*60 + currentMin + currentSec/60)*(this.slot_space/60) + this.block_space;
+					
+				} else {
+					console.log('CLOSE');
+					clearInterval(this.clockInterval);
+				}
 				
 				this.clockInterval = setInterval(() =>{
 				
@@ -329,7 +337,7 @@ export class TimelineComponent implements OnInit {
 					
 					
 					if(Date.parse(nowTime_sec) < Date.parse(end_time_sec)){
-						console.log('OPEN');
+						console.log('within interval OPEN');
 						
 						currentHr = Math.abs(start_time_hr - today.getHours());
 						currentMin = today.getMinutes();
@@ -368,7 +376,14 @@ export class TimelineComponent implements OnInit {
 	this.slot_space = this.timer_width/this.timer_view;
 	this.block_space = (this.slot_space/4)/2 + (56+27);
 	
+	console.log('in guide: ', this.block_space);
+	
 	let hrDif:any = Math.abs(startTime_hr-endTime_hr) + 1;
+	
+	this.guidePosArr = [];
+	this.timerLabelArr = [];
+	this.slotcont_wd = 114;
+	this.scrollablecont_wd = 114;
 	
 	for(let i=0; i<hrDif; i++){
 		
@@ -422,14 +437,24 @@ export class TimelineComponent implements OnInit {
 	this.timerLabelArr = [];
 	this.guidePosArr = [];
 	this.timerScroll = 0;
+	this.timer_width = this.timer.nativeElement.offsetWidth;
 	this.timercomponent.directiveRef.scrollTo(this.timerScroll, 0, 0);
+	
 	this.patientcomponent.directiveRef.scrollTo(this.timerScroll, this.timeline_scroll_y, 0);
 	
 	this.createTimeGuide();
+	
+	console.log('change view: ', this.block_space);
+	
 	this.messageService.sendMessage('createblock', {slot_space: this.slot_space, block_space: this.block_space, timer_view: this.timer_view});
 	
 	clearInterval(this.checkTimeInterval);
 	clearInterval(this.clockInterval);
+	
+	this.checkTimeInterval = null;
+	this.clockInterval = null;
+	
+	console.log(this.checkTimeInterval, this.clockInterval);
 		
 	if(this._isToday == true){
 		this.clock();

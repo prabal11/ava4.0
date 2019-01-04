@@ -1,14 +1,23 @@
 @import '~@angular/material/theming';
 
+.top-bar {
+	width: 100%;
+	height: 98px;
+	background: #4EC8F0;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
+
 .schedular-cont {
-	padding: 30px 48px 0 0; 
+	padding: 17px 75px 0 0; 
 	box-sizing: border-box;
 	width: 1728px;
 	transform-origin: 0 0;
 }
 
 .day_status {
-	color: #56CCF2;
+	color: #FFFFFF;
 	font-size: 24px;
 	text-transform: uppercase;
 	letter-spacing: 5px;
@@ -21,24 +30,25 @@
     background: #fff;
     border-radius: 5px;
     border: 1px solid #A5A5A5;
-    padding: 13px 5px;
-    max-width: 430px;
+    padding: 1px 5px;
+    max-width: 340px;
     width: 100%;
     box-sizing: border-box;
-    margin: 7px 0 0;
+    margin: 5px 0 0;
+    height: 35px
 }
 
 .date-selector-label {
 	text-align: center;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: #56CCF2;
-	padding-top: 5px
+	/*padding-top: 5px*/
 }
 
 .other-day {
-	font-size: 15px;
-	padding-top: 7px;
+	font-size: 13px;
+	padding-top: 3px;
 }
 
 .selector-icon {
@@ -54,27 +64,29 @@
 	background: #fff;
 	border-radius: 5px;
 	border: 1px solid #A5A5A5;
-	/*max-width: 400px;
-	width: 100%;*/
-	
-	width: 400px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-top: 36px;
-	float: right
+	width: 340px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-top: 0;
+	display: inline-block;
+	height: 35px;
+	box-sizing: border-box;
+	vertical-align: middle;
 }
 
 .search-input {
-	padding: 20px 20px 20px 10px;
+	padding: 7px 10px 7px 10px;
 	width: 100%;
 	box-sizing: border-box;
 	border: none;
-	font-size: 16px;
+	font-size: 12px;
+	height: 35px;
+	background: none;
 }
 
 .search-input::placeholder {
 	color: #A5A5A5;
-	font-size: 18px;
+	font-size: 12px;
 }
 
 input:focus,
@@ -86,28 +98,33 @@ button:focus {
 
 .search-panel-icon {
 	color: #63CCF2;
-	width: 30px;
-	height: 30px;
-	font-size: 30px;
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
 }
 
 .vh_center {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 35px;
 }
 
 .plus-btn-cont {
 	position: relative;
-    background: #fff;
+    /* background: #fff; */
     border-radius: 5px;
-    border: 1px solid #A5A5A5;
-    width: 40px;
-    padding: 12px 10px;
-    margin-top: 36px;
-	float: right;
-	margin-left: 20px;
-	text-align: center;
+    /* border: 1px solid #A5A5A5; */
+    width: 34px;
+    height: 34px;
+    padding: 5px;
+    margin-top: 0;
+    display: inline-block;
+    margin-left: 4px;
+	margin-right: 4px;
+    text-align: center;
+    box-sizing: border-box;
+	vertical-align: middle;
 }
 
 .panelClass.mat-dialog-container {
@@ -130,6 +147,7 @@ button:focus {
 	float: left;
 	margin-top: 5px;
 	cursor: pointer;
+	color: #FFFFFF;
 }
 
 .clear {
@@ -158,31 +176,51 @@ button:focus {
 }
 
 .lastnames-list {
-	width: 364px;
-    height: 277px;
+	width: 340px;
+    height: 245px;
     background: #FFFFFF;
     border: 1px solid #A5A5A5;
     position: absolute;
     right: 0;
-    top: 58px;
+    top: 33px;
     z-index: 100;
-	
-	padding: 20px;
-	
+	padding: 5px 0;
+	box-sizing: border-box;
+}
+
+.lastname-item {
+	padding: 2px 10px;
 }
 
 .lastitem-label {
 	font-size: 14px;
 	text-align: right;
 	color: #4EC8F0;
-	margin-bottom: 20px;
-	padding-right: 30px;
+	/*padding: 5px 10px;*/
+	float: right;
+}
+
+.list-item-dob {
+	float: left;
+    font-size: 9px;
+    color: #A5A5A5;
+    padding-top: 5px;
+}
+
+.notifictn_available {
+	position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #FF5A5A;
+    top: 6px;
+    right: 6px;
+    border-radius: 100px;
 }
 
 .legend-cont {
 	position: absolute;
-    right: 165px;
-    bottom: 8px;
+    bottom: 75px;
+    right: 20px;
 }
 
 .legend-cont ul {
@@ -192,15 +230,15 @@ button:focus {
 
 .appnt-type-block {
 	width: 30px;
-	height: 30px;
-	border-radius: 100%;
-	display: inline-flex;
-	font-size: 6px;
-	align-items: center;
-	justify-content: center;
-	margin-left: 17px;
-	color: #4C4C4C;
-	vertical-align: middle;
+    height: 9px;
+    font-size: 7px;
+    /* align-items: center; */
+    /* justify-content: center; */
+    margin-bottom: 5px;
+    color: #4C4C4C;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 1px
 }
 
 .appnt-type-block.yellow {
@@ -286,6 +324,15 @@ button:focus {
 	height: 20px;
 	font-size: 20px;
 	margin: auto;
+}
+
+.clone-container {
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	border: 1px solid #ccc;
 }
 
 
